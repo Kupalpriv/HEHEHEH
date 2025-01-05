@@ -72,12 +72,4 @@ module.exports.handleEvent = async function ({ api, event, prefix }) {
   if (body?.toLowerCase().startsWith('prefix')) {
     api.sendMessage(message, threadID, messageID);
   }
-
-  if (body?.toLowerCase().startsWith('help all')) {
-    api.sendMessage(
-      `Typing "${prefix}help all" displays all available commands.`,
-      threadID,
-      messageID
-    );
-  }
 };
