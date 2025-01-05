@@ -1,60 +1,75 @@
+const axios = require('axios');
+const fs = require('fs');
 const path = require('path');
+
 module.exports.config = {
-  name: "music",
-  version: "1.0.0",
-  role: 0,
-  hasPrefix: true,
-  aliases: ['play'],
-  usage: 'Music [promt]',
-  description: 'Search music in youtube',
-  credits: 'Deveploper',
-  cooldown: 5
+    name: 'music',
+    version: '1.0.0',
+    role: 0,
+    hasPrefix: true,
+    aliases: ['sing'],
+    description: 'Search and download music using a keyword',
+    usage: 'music [search term]',
+    credits: 'churchill',
+    cooldown: 5,
 };
-module.exports.run = async function({
-  api,
-  event,
-  args
-}) {
-  const fs = require("fs-extra");
-  const ytdl = require("ytdl-core");
-  const yts = require("yt-search");
-  const musicName = args.join(' ');
-  if (!musicName) {
-    api.sendMessage(`To get started, type music and the title of the song you want.`, event.threadID, event.messageID);
-    return;
-  }
-  try {
-    api.sendMessage(`Searching for "${musicName}"...`, event.threadID, event.messageID);
-    const searchResults = await yts(musicName);
-    if (!searchResults.videos.length) {
-      return api.sendMessage("Can't find the search.", event.threadID, event.messageID);
-    } else {
-      const music = searchResults.videos[0];
-      const musicUrl = music.url;
-      const stream = ytdl(musicUrl, {
-        filter: "audioonly"
-      });
-      const time = new Date();
-      const timestamp = time.toISOString().replace(/[:.]/g, "-");
-      const filePath = path.join(__dirname, 'cache', `${timestamp}_music.mp3`);
-      stream.pipe(fs.createWriteStream(filePath));
-      stream.on('response', () => {});
-      stream.on('info', (info) => {});
-      stream.on('end', () => {
-        if (fs.statSync(filePath).size > 26214400) {
-          fs.unlinkSync(filePath);
-          return api.sendMessage('The file could not be sent because it is larger than 25MB.', event.threadID);
-        }
-        const message = {
-          body: `${music.title}`,
-          attachment: fs.createReadStream(filePath)
-        };
-        api.sendMessage(message, event.threadID, () => {
-          fs.unlinkSync(filePath);
-        }, event.messageID);
-      });
+
+module.exports.run = async function ({ api, event, args }) {
+    if (args.length === 0) {
+        return api.sendMessage('🎶 Please provide a search term. For example:\n\nmusic apt', event.threadID, event.messageID);
     }
-  } catch (error) {
-    api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
-  }
+
+    const searchTerm = args.join(' ');
+    const searchApiUrl = `https://dlvc.vercel.app/yt-audio?search=${encodeURIComponent(searchTerm)}`;
+
+    let searchingMessageID;
+
+    try {
+        const searchingMessage = await api.sendMessage(`🔍 Searching for music: *${searchTerm}*`, event.threadID);
+        searchingMessageID = searchingMessage.messageID;
+
+        const response = await axios.get(searchApiUrl);
+        const { title, downloadUrl, time, views, Artist, Album, channelName } = response.data;
+
+        const musicPath = path.resolve(__dirname, 'music.mp3');
+        const musicStream = await axios({
+            url: downloadUrl,
+            method: 'GET',
+            responseType: 'stream',
+        });
+
+        const writer = fs.createWriteStream(musicPath);
+        musicStream.data.pipe(writer);
+
+        await new Promise((resolve, reject) => {
+            writer.on('finish', resolve);
+            writer.on('error', reject);
+        });
+
+        const messageContent = `🎶 Now Playing: ${title}
+📀 Album: ${Album}
+🎤 Artist: ${Artist}
+⏱️ Duration: ${time}
+👀 Views: ${views}
+📺 Channel: ${channelName}`;
+
+        await api.sendMessage(
+            {
+                body: messageContent,
+                attachment: fs.createReadStream(musicPath),
+            },
+            event.threadID,
+            event.messageID
+        );
+
+        if (searchingMessageID) {
+            api.unsendMessage(searchingMessageID);
+        }
+
+        fs.unlinkSync(musicPath);
+
+    } catch (error) {
+        console.error('Error fetching or sending music:', error);
+        api.sendMessage('❌ Failed to fetch or send the music. Please try again later.', event.threadID, event.messageID);
+    }
 };
