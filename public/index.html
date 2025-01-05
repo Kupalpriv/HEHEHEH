@@ -9,16 +9,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Global Styles */
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #121212;
+            color: #ffffff;
         }
 
+        /* Sticky Header */
         .sticky-header {
-            background-color: rgba(53, 92, 125, 0.8);
-            color: white;
+            background-color: #1f2937;
+            color: #ffffff;
             padding: 15px 20px;
             font-size: 20px;
             font-weight: bold;
@@ -28,9 +31,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         }
 
         .sticky-header span {
@@ -42,6 +43,7 @@
             font-size: 1.5rem;
         }
 
+        /* Form Container */
         .container {
             margin: 30px auto;
             max-width: 400px;
@@ -49,10 +51,11 @@
         }
 
         .header {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 20px;
             text-align: center;
+            color: #bb86fc;
         }
 
         .form-group {
@@ -64,13 +67,20 @@
             font-weight: 500;
             margin-bottom: 5px;
             text-align: left;
+            color: #ffffff;
         }
 
         .form-control {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #444;
             border-radius: 5px;
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+
+        .form-control::placeholder {
+            color: #888888;
         }
 
         .checkbox-container {
@@ -85,8 +95,8 @@
         }
 
         .submit-btn {
-            background-color: #355c7d;
-            color: white;
+            background-color: #bb86fc;
+            color: #121212;
             font-weight: bold;
             padding: 10px 20px;
             border: none;
@@ -95,18 +105,38 @@
             margin: 0 auto;
             display: block;
             width: 100px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #3700b3;
         }
 
         .submit-btn:disabled {
-            background-color: #ccc;
+            background-color: #555555;
             cursor: not-allowed;
         }
 
+        /* Footer */
         .footer {
             text-align: center;
             font-size: 12px;
             margin-top: 20px;
-            color: #888;
+            color: #888888;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #bb86fc;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3700b3;
         }
     </style>
 </head>
