@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Heru Autobot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://l.top4top.io/p_3203n4uzy0.jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .sticky-header {
+            background-color: rgba(53, 92, 125, 0.8);
+            color: white;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .sticky-header span {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .sticky-header i {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            margin: 30px auto;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin-top: 10px;
+        }
+
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background-color: #355c7d;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+            width: 100px;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-header">
+        <span>AUTO FBBOT</span>
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="container">
+        <div class="centered-box">
+            <div class="header">Autobot Beta.v1</div>
+            <form id="json-form" onsubmit="State(); return false;">
+                <div class="form-group">
+                    <label for="inputOfPrefix" class="form-label">Prefix (optional):</label>
+                    <input type="text" id="inputOfPrefix" class="form-control" placeholder="Choose one: .$, #, @, !, etc.">
+                </div>
+                <div class="form-group">
+                    <label for="inputOfAdmin" class="form-label">Admin UID:</label>
+                    <input type="text" id="inputOfAdmin" class="form-control" placeholder="Example: (1000xxxxxxxxxx)">
+                </div>
+                <div class="form-group">
+                    <label for="json-data" class="form-label">Appstate:</label>
+                    <textarea id="json-data" class="form-control" rows="3" placeholder="Paste your appstate here"></textarea>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckbox" onchange="toggleSubmitButton()">
+                    <label for="agreeCheckbox" class="form-label">I agree to the terms and policies</label>
+                </div>
+                <button class="submit-btn" disabled id="submitButton" onclick="State()">Submit</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️ by Jay Mar.<br>Time: <span id="time"></span> GMT+8</p>
+            <p>Ping: <span id="ping">0 ms</span></p>
+            <p>Active Session: <span id="sessionCount">Loading...</span></p>
+        </div>
+    </div>
+
+    <script>
+        const audio = new Audio('https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7418923836214692613.mp3');
+        let isPlayed = false;
+
+        document.body.addEventListener('click', () => {
+            if (!isPlayed) {
+                audio.play();
+                isPlayed = true;
+            }
+        });
+
+        window.onload = function() {
+            Swal.fire({
+                title: 'Notice',
+                html: `
+                    Upon deployment or login, your chatbot connection remains active unless you personally access the bot's account or modify the password. 
+                    This measure ensures seamless operation and security.<br><br>
+                    We respect your privacy and will not share your personal information with third parties without your consent.<br>
+                    We may collect and store certain information such as your Facebook public profile and interactions with the bot for improving user experience.<br><br>
+                    Contact the developer: <a href="https://www.facebook.com/jaymar.dev.00" style="color: #3182ce;" target="_blank">Facebook</a>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Okay'
+            });
+        };
+
+        function toggleSubmitButton() {
+            const agreeCheckbox = document.getElementById('agreeCheckbox');
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = !agreeCheckbox.checked;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
