@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>𝗔𝗖𝗧𝗜𝗩𝗘 𝗦𝗘𝗦𝗦𝗜𝗢𝗡</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/x-icon" href="https://i.imgur.com/FNc6BL7.jpeg">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+      <style>
+         #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+         }
+
+         body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f9;
+         }
+
+         h1 {
+            background-color: rgba(53, 92, 125, 0.8);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: fit-content;
+         }
+
+         .scroll-container {
+            position: relative;
+            margin: 20px auto;
+            padding: 10px;
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+         }
+
+         .scroll-container::-webkit-scrollbar {
+            width: 8px;
+         }
+
+         .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #355c7d;
+            border-radius: 10px;
+         }
+
+         .scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: #2c3e50;
+         }
+
+         .user-card {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(145deg, #2c3e50, #355c7d);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin: 15px auto;
+            color: white;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+         }
+
+         .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+         }
+
+         .user-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+         }
+
+         .user-info {
+            text-align: left;
+            flex-grow: 1;
+         }
+
+         .user-info h4 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 5px;
+            color: #f4f4f9;
+         }
+
+         .user-info p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: #e0e0e0;
+         }
+
+         .uptime-user {
+            font-style: bold;
+            color: #6b8e23;
+         }
+
+         .alert {
+            background-color: #ff4d4d;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+         }
+
+         audio {
+            display: none;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="particles-js"></div>
+      <audio autoplay loop>
+         <source src="https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7332303011937536773.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+      </audio>
+      <h1>CURRENT ONLINE</h1>
+      <div class="scroll-container" id="user_online"></div>
+
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+      <script>
+         particlesJS('particles-js', {
+            particles: {
+               number: {
+                  value: 80,
+                  density: {
+                     enable: true,
+                     value_area: 800
+                  }
+               },
+               color: {
+                  value: "#000000"
+               },
+               shape: {
+                  type: "circle",
+                  stroke: {
+                     width: 0,
+                     color: "#000000"
+                  },
+                  polygon: {
+                     nb_sides: 5
+                  }
+               },
+               opacity: {
+                  value: 0.5,
+                  random: false,
+                  anim: {
+                     enable: false,
+                     speed: 1,
+                     opacity_min: 0.1,
+                     sync: false
+                  }
+               },
+               size: {
+                  value: 5,
+                  random: true,
+                  anim: {
+                     enable: false,
+                     speed: 40,
+                     size_min: 0.1,
+                     sync: false
+                  }
+               },
+               line_linked: {
+                  enable: true,
+                  distance: 150,
+                  color: "#000000",
+                  opacity: 0.4,
+                  width: 1
+               },
+               move: {
+                  enable: true,
+                  speed: 6,
+                  direction: "none",
+                  random: false,
+                  straight: false,
+                  out_mode: "out",
+                  bounce: false,
+                  attract: {
+                     enable: false,
+                     rotateX: 600,
+                     rotateY: 1200
+                  }
+               }
+            },
+            interactivity: {
+               detect_on: "canvas",
+               events: {
+                  onhover: {
+                     enable: true,
+                     mode: "grab"
+                  },
+                  onclick: {
+                     enable: true,
+                     mode: "push"
+                  },
+                  resize: true
+               },
+               modes: {
+                  grab: {
+                     distance: 140,
+                     line_linked: {
+                        opacity: 1
+                     }
+                  },
+                  bubble: {
+                     distance: 400,
+                     size: 40,
+                     duration: 2,
+                     opacity: 8,
+                     speed: 3
+                  },
+                  repulse: {
+                     distance: 200,
+                     duration: 0.4
+                  },
+                  push: {
+                     particles_nb: 4
+                  },
+                  remove: {
+                     particles_nb: 2
+                  }
+               }
+            },
+            retina_detect: true
+         });
+
+         async function listOfAi() {
+            const userOnline = document.getElementById("user_online");
+            try {
+               const response = await fetch("/info");
+               if (!response.ok) throw new Error("Failed to fetch data");
+               const data = await response.json();
+
+               userOnline.innerHTML = '';
+               data.forEach(user => {
+                  const { name, thumbSrc, time } = user;
+                  const userCard = document.createElement('div');
+                  userCard.className = 'user-card';
+
+                  const image = document.createElement('img');
+                  image.src = thumbSrc;
+                  image.alt = 'User Thumbnail';
+
+                  const userInfo = document.createElement('div');
+                  userInfo.className = 'user-info';
+
+                  const userName = document.createElement('h4');
+                  userName.textContent = 'U S E R';
+
+                  const uptimeUser = document.createElement('p');
+                  uptimeUser.className = 'uptime-user';
+                  uptimeUser.textContent = `⏳ Uptime: ${timeFormat(time)}`;
+
+                  userInfo.appendChild(userName);
+                  userInfo.appendChild(uptimeUser);
+                  userCard.appendChild(image);
+                  userCard.appendChild(userInfo);
+                  userOnline.appendChild(userCard);
+               });
+            } catch (error) {
+               console.error(error);
+               userOnline.innerHTML = `<div class="alert">An error occurred while fetching data. Please try again later.</div>`;
+            }
+         }
+
+         function timeFormat(currentTime) {
+            const days = Math.floor(currentTime / (3600 * 24));
+            const hours = Math.floor((currentTime % (3600 * 24)) / 3600);
+            const minutes = Math.floor((currentTime % 3600) / 60);
+            const seconds = currentTime % 60;
+
+            const timeParts = [];
+            if (days) timeParts.push(`${days} day${days > 1 ? 's' : ''}`);
+            if (hours) timeParts.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+            if (minutes) timeParts.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+            if (seconds) timeParts.push(`${seconds} second${seconds > 1 ? 's' : ''}`);
+
+            return timeParts.join(' ');
+         }
+
+         listOfAi();
+      </script>
+   </body>
+</html>
