@@ -1,169 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Autobot</title>
+    <title>𝗔𝗨𝗧𝗢𝗕𝗢𝗧</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="https://l.top4top.io/p_3203n4uzy0.jpeg">
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/FNc6BL7.jpeg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        /* Sticky Header */
-        .sticky-header {
-            background-color: #1f2937;
-            color: #ffffff;
-            padding: 15px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .sticky-header span {
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .sticky-header i {
-            font-size: 1.5rem;
-        }
-
-        /* Form Container */
-        .container {
-            margin: 30px auto;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .header {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #bb86fc;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 5px;
-            text-align: left;
-            color: #ffffff;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background-color: #1f1f1f;
-            color: #ffffff;
-        }
-
-        .form-control::placeholder {
-            color: #888888;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            margin-top: 10px;
-        }
-
-        .checkbox-container input {
-            margin-right: 10px;
-        }
-
-        .submit-btn {
-            background-color: #bb86fc;
-            color: #121212;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 auto;
-            display: block;
-            width: 100px;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn:hover {
-            background-color: #3700b3;
-        }
-
-        .submit-btn:disabled {
-            background-color: #555555;
-            cursor: not-allowed;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            margin-top: 20px;
-            color: #888888;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #bb86fc;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3700b3;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.hCaptcha.com/1/api.js" async defer></script>
+    <script>
+    alert("Added the following commands:\n~ Bad-santa\n~ Beautiful\n~ Big-screen\n~ Billboard\n~ Billboardv2\n~ Blink\n~ Broadway\n~ Sim\n~ Teach\n~ Night-city\n~ Zombie\n~ Smsbomb\n~ Heru\n~ Aria\n~ Fbcreate\n~ Snow-globe\n~ Snow-london\n~ Snow-writing\n~ Video\n\nFixed some commands and removed non-working commands.\n\nIf you have any command suggestions, message the admin: Jay Mar on Facebook.");
+    </script>
+    
 </head>
 <body>
     <div class="sticky-header">
         <span>AUTO FBBOT</span>
-        <i class="fas fa-robot"></i>
+        <svg xmlns="https://i.imgur.com/eK7r0Lz.jpeg" viewBox="0 0 64 64" class="robot-icon-svg">
+            <circle cx="32" cy="32" r="30" fill="#355c7d" stroke="#fff" stroke-width="4"></circle>
+            <rect x="22" y="22" width="20" height="12" rx="2" ry="2" fill="#fff"></rect>
+            <circle cx="27" cy="28" r="2" fill="#355c7d"></circle>
+            <circle cx="37" cy="28" r="2" fill="#355c7d"></circle>
+            <path d="M24 40h16v4H24z" fill="#fff"></path>
+        </svg>
     </div>
-
     <div class="container">
         <div class="centered-box">
-            <div class="header">Autobot Beta.v1</div>
+            <div class="header">Autobotv2</div>
             <form id="json-form" onsubmit="State(); return false;">
                 <div class="form-group">
-                    <label for="inputOfPrefix" class="form-label">Prefix (optional):</label>
+                    <label for="inputOfPrefix" class="form-label">Prefix (optional)</label>
                     <input type="text" id="inputOfPrefix" class="form-control" placeholder="Choose one: .$, #, @, !, etc.">
                 </div>
                 <div class="form-group">
-                    <label for="inputOfAdmin" class="form-label">Admin UID:</label>
+                    <label for="inputOfAdmin" class="form-label">Admin UID</label>
                     <input type="text" id="inputOfAdmin" class="form-control" placeholder="Example: (1000xxxxxxxxxx)">
                 </div>
                 <div class="form-group">
-                    <label for="json-data" class="form-label">Appstate:</label>
+                    <label for="json-data" class="form-label">Appstate</label>
                     <textarea id="json-data" class="form-control" rows="3" placeholder="Paste your appstate here"></textarea>
                 </div>
+                
+                <div class="h-captcha mb-3" data-sitekey="6b5a506e-395a-46d0-8bba-77941038b772" data-callback="onCaptchaSuccess"></div>
                 <div class="checkbox-container">
-                    <input type="checkbox" id="agreeCheckbox" onchange="toggleSubmitButton()">
+                    <input type="checkbox" id="agreeCheckbox" disabled>
                     <label for="agreeCheckbox" class="form-label">I agree to the terms and policies</label>
                 </div>
                 <button class="submit-btn" disabled id="submitButton" onclick="State()">Submit</button>
@@ -173,42 +56,12 @@
         <div class="footer">
             <p>Made with ❤️ by chilli.<br>Time: <span id="time"></span> GMT+8</p>
             <p>Ping: <span id="ping">0 ms</span></p>
-            <p>Active Session: <span id="sessionCount">Loading...</span></p>
+            <div style="margin-top: 20px;">
+                <a href="/bot-online" class="btn btn-primary" style="width: 100%; padding: 10px; font-size: 16px; font-weight: bold; background-color: #355c7d; border: none; text-decoration: none; color: white;">View Online</a><br><br>
+            </div>
+            <a href="/temporary" class="btn btn-primary" style="width: 100%; padding: 10px; font-size: 16px; font-weight: bold; background-color: #355c7d; border: none; text-decoration: none; color: white;">Impossible</a>
         </div>
     </div>
-
-    <script>
-        const audio = new Audio('https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7418923836214692613.mp3');
-        let isPlayed = false;
-
-        document.body.addEventListener('click', () => {
-            if (!isPlayed) {
-                audio.play();
-                isPlayed = true;
-            }
-        });
-
-        window.onload = function() {
-            Swal.fire({
-                title: 'Notice',
-                html: `
-                    Upon deployment or login, your chatbot connection remains active unless you personally access the bot's account or modify the password. 
-                    This measure ensures seamless operation and security.<br><br>
-                    We respect your privacy and will not share your personal information with third parties without your consent.<br>
-                    We may collect and store certain information such as your Facebook public profile and interactions with the bot for improving user experience.<br><br>
-                    Contact the developer: <a href="https://www.facebook.com/Churchill.Dev4100" style="color: #3182ce;" target="_blank">Facebook</a>
-                `,
-                icon: 'info',
-                confirmButtonText: 'Okay'
-            });
-        };
-
-        function toggleSubmitButton() {
-            const agreeCheckbox = document.getElementById('agreeCheckbox');
-            const submitButton = document.getElementById('submitButton');
-            submitButton.disabled = !agreeCheckbox.checked;
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
 </body>
