@@ -74,16 +74,16 @@ post["handleEvent"] = async function ({ api, admin }) {
         try {
             const response = await axios.get('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json');
             const randomQuote = response.data.quoteText;
-            const randomAuthor = response.data.quoteAuthor || "Herubot";
+            const randomAuthor = response.data.quoteAuthor || "Cliffbot";
 
             const images = [
-                "https://i.imgur.com/KzUTSHb.jpeg",
-                "https://i.imgur.com/cw5ffSA.jpeg",
-                "https://i.imgur.com/AqCIJ00.jpeg",
-                "https://i.imgur.com/Uni0K3M.jpeg",
-                "https://i.imgur.com/BvKdLnk.jpeg",
-                "https://i.imgur.com/DVBNKUA.jpeg",
-                "https://i.imgur.com/MCRftSf.jpeg",
+                "https://i.imgur.com/p5UC6mk.jpeg",
+                "https://i.imgur.com/nHG62W2.jpeg",
+                "https://i.imgur.com/NfpInXC.jpeg",
+                "https://i.imgur.com/k48dJBU.jpeg",
+                "https://i.imgur.com/h9sATxR.jpeg",
+                "https://i.imgur.com/vqlyCXj.jpeg",
+                "https://i.imgur.com/ZWmgPnh.jpeg",
             ];
 
             const randomIndex = Math.floor(Math.random() * images.length);
@@ -104,12 +104,12 @@ post["handleEvent"] = async function ({ api, admin }) {
         }
     }
 
-    cron.schedule('0 */1 * * *', quotes, { // every  12 hours
+    cron.schedule('0 */12 * * *', quotes, { // every  12 hours
         scheduled: true,
         timezone: "Asia/Manila"
     });
 
-    cron.schedule('*/30 * * * *', sendMotivation, { // every 40 minutes 
+    cron.schedule('*/40 * * * *', sendMotivation, { // every 40 minutes 
         scheduled: true,
         timezone: "Asia/Manila"
     });
