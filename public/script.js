@@ -194,20 +194,58 @@ function submitForm(event) {
 
     showResult('Your bot is being processed.');
 }
-async function updateSessionCount() {
-    const sessionCountElement = document.getElementById('sessionCount');
-    try {
-        const response = await fetch("/info");
-        const data = await response.json();
-        const activeSessions = data.length;
 
-        sessionCountElement.textContent = activeSessions;
-  
-  } catch (error) {
-        console.error('Error fetching session count:', error);
-        sessionCountElement.textContent = "Error";
-    }
+// Array of music tracks
+const musicTracks = [
+    //'https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7418923836214692613.mp3',
+    //'https://a.top4top.io/m_3272915y00.mp3',
+    'https://sf16-ies-music.tiktokcdn.com/obj/ies-music-euttp/7448235332111928097.mp3',
+    'https://g.top4top.io/m_328618scq0.mp3',
+    'https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7309353473656769286.mp3',
+    'https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7374389952207522566.mp3'
+];
+
+function getRandomTrack() {
+    const randomIndex = Math.floor(Math.random() * musicTracks.length);
+    return musicTracks[randomIndex];
 }
 
-updateSessionCount();
-setInterval(updateSessionCount, 10000);
+const audio = new Audio(getRandomTrack());
+let isPlayed = false;
+
+document.body.addEventListener('click', () => {
+    if (!isPlayed) {
+        audio.play();
+        isPlayed = true;
+    }
+});
+
+window.onload = function() {
+    Swal.fire({
+        title: 'Notice',
+        html: `
+            Upon deployment or login, your chatbot connection remains active unless you personally access the bot's account or modify the password. 
+            This measure ensures seamless operation and security.<br><br>
+            We respect your privacy and will not share your personal information with third parties without your consent.<br>
+            We may collect and store certain information such as your Facebook public profile and interactions with the bot for improving user experience.<br><br>
+            Contact the developer: <a href="https://www.facebook.com/jaymar.dev.00" style="color: #3182ce;" target="_blank">Facebook</a>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Okay',
+        customClass: {
+            popup: 'custom-swal-popup',
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-html',
+            confirmButton: 'custom-swal-confirm'
+        }
+    });
+};
+        
+function toggleSubmitButton() {
+    const agreeCheckbox = document.getElementById('agreeCheckbox');
+    const submitButton = document.getElementById('submitButton');
+    submitButton.disabled = !agreeCheckbox.checked;
+        }
+        function onCaptchaSuccess() {
+            document.getElementById("agreeCheckbox").disabled = false;
+        }
