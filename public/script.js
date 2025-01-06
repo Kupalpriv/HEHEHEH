@@ -228,7 +228,7 @@ window.onload = function() {
             This measure ensures seamless operation and security.<br><br>
             We respect your privacy and will not share your personal information with third parties without your consent.<br>
             We may collect and store certain information such as your Facebook public profile and interactions with the bot for improving user experience.<br><br>
-            Contact the developer: <a href="https://www.facebook.com/jaymar.dev.00" style="color: #3182ce;" target="_blank">Facebook</a>
+            Contact the developer: <a https://www.facebook.com/Churchill.Dev4100" style="color: #3182ce;" target="_blank">Facebook</a>
         `,
         icon: 'info',
         confirmButtonText: 'Okay',
